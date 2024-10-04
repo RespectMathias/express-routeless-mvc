@@ -10,14 +10,12 @@ function setupRoutelessMVC(app, options = {}) {
     viewEngine = 'html',
     viewExtensions = ['.html'],
     controllerExtensions = ['.js'],
-    staticDir = path.join(process.cwd(), 'public'),
-    caseSensitive = false,
     rootDefaultIndex = 'index',
+    caseSensitive = false,
   } = options;
 
   app.set('views', viewsDir);
   app.set('view engine', viewEngine);
-  app.use(express.static(staticDir));
 
   // Preload controllers
   const controllers = {};

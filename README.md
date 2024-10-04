@@ -20,17 +20,19 @@ const path = require('path');
 const app = express();
 
 // Register compilers if needed (e.g., CoffeeScript, TypeScript)
-
+// Setup your static files ('public', favicon, etc.)
 // Setup other middleware (logger, bodyParser, etc.)
 
+// Example where it is set as the defaults
 setupRoutelessMVC(app, {
-  viewsDir: path.join(__dirname, 'views'),
-  controllersDir: path.join(__dirname, 'controllers'),
-  viewEngine: 'html',                // Default: 'html'
-  viewExtensions: ['.html'],         // Default: ['.html']
-  controllerExtensions: ['.js'],     // Default: ['.js']
-  staticDir: path.join(__dirname, 'public'), // Default: 'public'
+  viewsDir: path.join(__dirname, 'views'),         // Default: 'views'
+  controllersDir: path.join(__dirname, 'controllers'), // Default: 'controllers'
+  viewEngine: 'html',                              // Default: 'html'
+  viewExtensions: ['.html'],                       // Default: ['.html']
+  controllerExtensions: ['.js'],                   // Default: ['.js']
+  caseSensitive: false,                            // Default: false
 });
+
 
 app.listen(3000, () => {
   console.log('Server running on port 3000');
@@ -41,7 +43,6 @@ app.listen(3000, () => {
 
 - **Dynamic Routing:** Automatically maps routes based on the `views` directory structure.
 - **Flexible MVC:** Organize controllers and views without manual route definitions.
-- **Static File Serving:** Serves static assets from the designated `public` directory.
 
 ## Options
 
@@ -50,11 +51,23 @@ app.listen(3000, () => {
 - `viewEngine` (String): Template engine to use. Default: `'html'`.
 - `viewExtensions` (Array): Supported view file extensions. Default: `['.html']`.
 - `controllerExtensions` (Array): Supported controller file extensions. Default: `['.js']`.
-- `staticDir` (String): Directory for static assets. Default: `'public'`.
+- `caseSensitive` (boolean): Sets the file name case sensitivity. Default: `'false'`.
 
 ## Important
 
-- **Experimental:** Use with caution in production environments.
+- **Automatic Routing:** This package automatically routes all files in the `viewsDir` to corresponding routes. If you need to restrict access to certain routes (e.g., require authentication), you must implement your own authorization solution.
+  
+- **Authorization:** It is standard practice to handle **authentication** and **authorization** separately, typically via middleware or in your controllers. You can use packages like [Passport.js](http://www.passportjs.org/) or add custom authorization logic inside your controllers, such as:
+
+  ```javascript
+  // controllers/admin.js
+  module.exports = (req, res, next) => {
+      if (!req.user) return res.status(401).send('Unauthorized');
+      if (req.user.role !== 'admin') return res.status(403).send('Forbidden');
+      return { title: 'Admin Dashboard', user: req.user };
+  };
+  ```
+
 - **Naming Convention:** Controller and view filenames must match to associate them with the same route.
   - *Example:* For route `/about`, use `views/about.html` and `controllers/about.js`.
 

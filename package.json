@@ -1,6 +1,6 @@
 {
   "name": "express-routeless-mvc",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Express middleware for dynamic, file-based routing without explicit route definitions, supporting flexible MVC structures.",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/RespectMathias/express-routeless-mvc#readme",
   "dependencies": {
-    "express": "^4.21.0"
+    "express": "^4.21.0",
+    "gray-matter": "^4.0.3"
   }
 }
