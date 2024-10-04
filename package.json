@@ -1,0 +1,30 @@
+{
+  "name": "express-routeless-mvc",
+  "version": "1.0.0",
+  "description": "Express middleware for dynamic, file-based routing without explicit route definitions, supporting flexible MVC structures.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "express",
+    "mvc",
+    "routing",
+    "middleware",
+    "dynamic-routing",
+    "file-based-routing"
+  ],
+  "author": "RespectMathias",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/RespectMathias/express-routeless-mvc.git"
+  },
+  "bugs": {
+    "url": "https://github.com/RespectMathias/express-routeless-mvc/issues"
+  },
+  "homepage": "https://github.com/RespectMathias/express-routeless-mvc#readme",
+  "dependencies": {
+    "express": "^4.21.0"
+  }
+}
