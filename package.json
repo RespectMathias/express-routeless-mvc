@@ -25,7 +25,6 @@
   },
   "homepage": "https://github.com/RespectMathias/express-routeless-mvc#readme",
   "dependencies": {
-    "express": "^4.21.0",
-    "gray-matter": "^4.0.3"
+    "express": "^4.21.0"
   }
 }
